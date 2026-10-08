@@ -1,0 +1,182 @@
+.container {
+  margin: 2%;
+  color: white;
+}
+.book {
+  transition: opacity 0.4s 0.2s;
+}
+
+.page {
+  width: 36vw;
+  height: 36vw;
+  overflow: hidden;
+  object-fit: contain;
+}
+
+.page img {
+  width: 100%;
+  height: auto;
+}
+
+.bound {
+  perspective: 250vw;
+}
+
+.bound .pages {
+  width: 72vw;
+  height: 36vw;
+  position: relative;
+  transform: rotateX(12deg);
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  border-radius: 4px;
+}
+
+.bound .page {
+  float: none;
+  clear: none;
+  margin: 0;
+  position: absolute;
+  top: 0;
+  width: 36vw;
+  height: 36vw;
+  transform-origin: 0 0;
+  transition: transform 1.4s;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+  user-select: none;
+}
+
+.bound .page:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0);
+  transition: background 0.7s;
+  z-index: 2;
+}
+
+.bound .page:nth-child(odd) {
+  pointer-events: all;
+  transform: rotateY(0deg);
+  right: 0;
+  border-radius: 0 4px 4px 0;
+}
+
+.bound .page:nth-child(odd):hover {
+  transform: rotateY(-10deg);
+}
+
+.bound .page:nth-child(odd):hover:before {
+  background: rgba(0, 0, 0, 0.03);
+}
+
+.bound .page:nth-child(even) {
+  pointer-events: none;
+  transform: rotateY(180deg);
+  transform-origin: 100% 0;
+  left: 0;
+  border-radius: 4px 0 0 4px;
+}
+
+.bound .page:nth-child(even):before {
+  background: rgba(0, 0, 0, 0.01);
+}
+
+.bound .page.grabbing {
+  transition: none;
+}
+
+.bound .page.flipped:nth-child(odd) {
+  pointer-events: none;
+  transform: rotateY(-180deg);
+}
+
+.bound .page.flipped:nth-child(odd):before {
+  background: rgba(0, 0, 0, 0.01);
+}
+
+.bound .page.flipped:nth-child(even) {
+  pointer-events: all;
+  transform: rotateY(0deg);
+}
+
+.bound .page.flipped:nth-child(even):hover {
+  transform: rotateY(10deg);
+}
+
+.bound .page.flipped:nth-child(even):hover:before {
+  background: rgba(0, 0, 0, 0.01);
+}
+
+button {
+  padding: 8px 12px;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 7.5px;
+  cursor: pointer;
+  margin-right: 10px;
+  box-shadow: 2px 4px 2px 2px rgba(0, 0, 0, 0.6);
+  transition: background-color 0.2s;
+  transform: scale(1);
+}
+.button:hover {
+  box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.6);
+}
+.btn-start {
+  background-color: #1ee571;
+  color: white;
+}
+.btn-start:hover {
+  background-color: #27ae60;
+}
+.btn-stop {
+  background-color: #d00765;
+  color: white;
+}
+.btn-stop:hover {
+  background-color: #860541;
+}
+.containerBtn {
+  max-width: 400px;
+  padding: 200px auto;
+}
+@media screen and (max-width: 768px) {
+  .pages {
+    width: 36vw;
+    height: 36vw;
+  }
+
+  .page {
+    width: 100%;
+    height: auto;
+    position: static;
+    transform: none;
+    margin-bottom: 1rem;
+  }
+
+  .page:first-child,
+  .page:nth-child(even),
+  .page:nth-child(odd) {
+    cursor: default;
+  }
+
+  .page:hover {
+    transform: none;
+  }
+}
+
+body {
+  background: #111;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  min-height: 100vh;
+  text-align: center;
+}
