@@ -141,6 +141,13 @@ button {
 .btn-stop:hover {
   background-color: #860541;
 }
+.btn-download {
+  background-color: #1e99e5;
+  color: white;
+}
+.btn-download:hover {
+  background-color: #084190;
+}
 .containerBtn {
   max-width: 400px;
   padding: 200px auto;
